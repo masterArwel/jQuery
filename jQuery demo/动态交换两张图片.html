@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery each方法</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-3.1.0.js"></script>
+    <script>
+        /* 切换图片 《数据结构(JavaScript)》 */
+        $(function () {
+            // 缓存DOM对象
+            var img1 = $("img").eq(0);
+            var img2 = $("img").eq(1);
+
+            // 为按钮绑定事件处理函数
+            $("#btn").on("click",function(){
+                // 两个src值的交换
+                var temp = img1.attr("src");
+                img1.attr("src",img2.attr("src"));
+                img2.attr("src",temp);
+            });
+        });
+    </script>
+</head>
+<body class="container">
+<div class="panel panel-primary">
+    <div class="panel-heading">动态交换两张图片</div>
+    <div class="panel-body">
+        <button id="btn" class="btn btn-primary">变</button>
+        <img src="images/lh.jpg"/>
+        <img src="images/lss.jpg"/>
+    </div>
+</div>
+</body>
+</html>

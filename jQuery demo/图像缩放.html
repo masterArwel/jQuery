@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>图像缩放</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/jquery-3.1.0.js"></script>
+        <script>
+            $(function(){
+                // 定义一个数组，用来缓存每张图片的大小
+                var images = [];
+
+                $("ul.photos").find("li").each(function(index){
+                    // 保存每张图片的原始大小，以对象的形式{width:800,height:600}
+                    // 代表图像的jQuery对象，获取其尺寸大小，jQuery提供了.width()和.height()
+                    var img = $(this).find("img");
+                    images[index] = {width:img.width(),height:img.height()};
+
+                    img.hover(
+                            function(){
+                                // 鼠标移入
+                                $(this).finish().animate({
+                                    top:0,
+                                    left:0,
+                                    width:290,
+                                    height:250,
+                                    opacity:1
+                                });
+                            },
+                            function(){
+                                // 鼠标移出
+                                $(this).finish().animate({
+                                    top:"-50%",
+                                    left:"-50%",
+                                    width:images[index].width,
+                                    height:images[index].height,
+                                    opacity:0.5
+                                });
+                            }
+                    );
+                });
+            });
+        </script>
+        <style>
+            /*
+            这里的CSS代码将无序列表的任何margin和padding都删除，并设置其子元素的display为inline，
+            设置每个子元素的overflow属性为hidden。
+            CSS代码还将图像的top和left设为-50%，让图像中间位于list元素内。还将图像的opacity设为0.5。
+            */
+            body {
+                background-color: #333;
+            }
+            .container {
+                width: 600px;
+                height: 600px;
+                margin: 50px auto auto auto;
+            }
+            .photos {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            .photos li {
+                display: inline-block;
+                width: 290px;
+                height: 250px;
+                background-color: #E1E1E1;
+                margin: 0 5px 5px 0;
+                overflow: hidden;
+                position: relative;
+                cursor: pointer;
+            }
+            .photos li img {
+                top: -50%;
+                left: -50%;
+                position: absolute;
+                opacity: 0.5;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <ul class="photos">
+                <li><img src="images/countryside01.jpg" alt="Countryside 1" /></li>
+                <li><img src="images/countryside02.jpg" alt="Countryside 2" /></li>
+                <li><img src="images/countryside03.jpg" alt="Countryside 3" /></li>
+                <li><img src="images/countryside04.jpg" alt="Countryside 4" /></li>
+            </ul>
+        </div>
+    </body>
+</html>

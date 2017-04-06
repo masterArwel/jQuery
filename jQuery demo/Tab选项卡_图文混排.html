@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无标题文档</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #box {
+            width: 580px;
+            height: 520px;
+            margin: 100px auto 0;
+        }
+
+        #box h2 {
+            font-size: 41px;
+            color: #464244;
+            line-height: 71px;
+        }
+
+        #tabs ul {
+            height: 31px;
+            border-left: #999999 solid 1px;
+            border-bottom: #999999 solid 1px;
+        }
+
+        #tabs ul li {
+            float: left;
+            border-top: #999999 solid 1px;
+            border-right: #999999 solid 1px;
+        }
+
+        #tabs ul li a {
+            display: block;
+            padding: 0 12px;
+            line-height: 29px;
+            border: white solid 1px;
+            border-bottom: none;
+            background-color: #e0e0e0;
+            color: #271d1e;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /*当一个标题a获得焦点时的样式*/
+        #tabs ul li .current {
+            border-bottom: white solid 1px;
+            background-color: white;
+        }
+
+        #content {
+            border: #999999 solid 1px;
+            border-top: none;
+            height: 357px;
+        }
+
+        #content h3 {
+            line-height: 47px;
+            font-size: 22px;
+            color: #434142;
+            border-bottom: #e2e2e2 dashed 1px;
+            margin-bottom: 10px;
+        }
+
+        /*让一开始，所有的内容面板隐藏*/
+        #content > div {
+            padding: 9px 20px 17px 20px;
+            display: none;
+        }
+
+        #content > div > div {
+            padding: 5px;
+            border: #dddddd solid 1px;
+            margin-right: 18px;
+            margin-bottom: 33px;
+            float: left;
+        }
+
+        #content p {
+            color: #999999;
+            font-size: 12px;
+            line-height: 21px;
+        }
+    </style>
+    <script src="js/jquery-3.1.0.js"></script>
+    <script>
+        $(function(){
+            // 先显示第一个选项页给用户
+            $("#content>div").first().show();
+
+            // 遍历tabs所有的标题
+            $("#tabs ul li").find("a").each(function(index){
+                // 为每一个li绑定一个事件处理函数
+                $(this).on("mouseenter",function(){
+                    // 修改a上的class:当前的a增加.current，其它a移除.current
+                    $(this).addClass("current").parent("li").siblings().children().removeClass("current");
+
+                    // 显示对应的选项页
+//                    $("#content>div").eq(index).show().siblings().hide();
+                    $("#content>div").eq(index).stop().fadeIn().siblings().hide();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="box">
+    <h2>简单的选项卡切换效果</h2>
+    <div id="tabs">
+        <!--标题栏-->
+        <ul>
+            <li><a href="#" class="current">Tab1</a></li>
+            <li><a href="#">Tab2</a></li>
+            <li><a href="#">Tab3</a></li>
+            <li><a href="#">Tab4</a></li>
+        </ul>
+        <!--选项页-->
+        <div id="content">
+            <div>
+                <h3>选项卡1</h3>
+                <div><img src="images/pic1.gif"/></div>
+                <p>内容11111:Saw polecat than took bankrupt good hillbilly stew, crazy, fancy and hillbilly heap rodeo, pappy.
+                    Thar range saw me him sherrif nothin' shiney dirt, pigs sheep city-slickers everlastin' shotgun
+                    driveway. Promenade catfight fart fiddle jiggly gonna tarnation, fence, what quarrel dirty, if. Pot
+                    grandma crop kinfolk jezebel diesel coonskin hoosegow wirey fixin' shack good roped in. Reckon stew
+                    tax-collectors, grandpa tobaccee hayseed good wash tired caboodle burnin' landlord.</p>
+                <p>
+                    Smokin' driveway wrestlin' go darn truck moonshine wirey cow grandpa saw, coonskin bull, java,
+                    huntin'.</p>
+            </div>
+            <div>
+                <h3>选项卡2</h3>
+                <div><img src="images/pic2.gif"/></div>
+                <p>内容22222:Saw polecat than took bankrupt good hillbilly stew, crazy, fancy and hillbilly heap rodeo, pappy.
+                    Thar range saw me him sherrif nothin' shiney dirt, pigs sheep city-slickers everlastin' shotgun
+                    driveway. Promenade catfight fart fiddle jiggly gonna tarnation, fence, what quarrel dirty, if. Pot
+                    grandma crop kinfolk jezebel diesel coonskin hoosegow wirey fixin' shack good roped in. Reckon stew
+                    tax-collectors, grandpa tobaccee hayseed good wash tired caboodle burnin' landlord.</p>
+                <p>
+                    Smokin' driveway wrestlin' go darn truck moonshine wirey cow grandpa saw, coonskin bull, java,
+                    huntin'.</p>
+            </div>
+            <div>
+                <h3>选项卡3</h3>
+                <div><img src="images/pic3.gif"/></div>
+                <p>内容33333:Saw polecat than took bankrupt good hillbilly stew, crazy, fancy and hillbilly heap rodeo, pappy.
+                    Thar range saw me him sherrif nothin' shiney dirt, pigs sheep city-slickers everlastin' shotgun
+                    driveway. Promenade catfight fart fiddle jiggly gonna tarnation, fence, what quarrel dirty, if. Pot
+                    grandma crop kinfolk jezebel diesel coonskin hoosegow wirey fixin' shack good roped in. Reckon stew
+                    tax-collectors, grandpa tobaccee hayseed good wash tired caboodle burnin' landlord.</p>
+                <p>
+                    Smokin' driveway wrestlin' go darn truck moonshine wirey cow grandpa saw, coonskin bull, java,
+                    huntin'.</p>
+            </div>
+            <div>
+                <h3>选项卡4</h3>
+                <div><img src="images/pic4.gif"/></div>
+                <p>内容44444:Saw polecat than took bankrupt good hillbilly stew, crazy, fancy and hillbilly heap rodeo, pappy.
+                    Thar range saw me him sherrif nothin' shiney dirt, pigs sheep city-slickers everlastin' shotgun
+                    driveway. Promenade catfight fart fiddle jiggly gonna tarnation, fence, what quarrel dirty, if. Pot
+                    grandma crop kinfolk jezebel diesel coonskin hoosegow wirey fixin' shack good roped in. Reckon stew
+                    tax-collectors, grandpa tobaccee hayseed good wash tired caboodle burnin' landlord.</p>
+                <p>
+                    Smokin' driveway wrestlin' go darn truck moonshine wirey cow grandpa saw, coonskin bull, java,
+                    huntin'.</p>
+            </div>
+        </div><!--end content-->
+    </div><!--end tabs-->
+</div>
+</body>
+</html>
